@@ -1,0 +1,277 @@
+<!-- *************************************** HUD *************************************** -->
+
+<!-- Top left (user section) -->
+<div id="user">
+    <div id="profil" ng-click="vm.openModal('game-over')">
+        <img src="assets/images/mario-profil-icone-gris.png" alt="profil icon"/>
+    </div>
+    <div id="score">
+        <span id="score_label">Score</span>
+        <span id="score_number">
+            <span>{{vm.scoreDisplay}}</span>
+            <img src="assets/images/star2_white.png" alt="score icon"/>
+        </span>
+    </div>
+    <div id="found">
+        <span id="nb_found">{{vm.gamesFoundDisplay}} / 14</span>
+        <span id="error">
+            <span>x</span><span>x</span><span>x</span>
+        </span>
+    </div>
+</div>
+
+<!-- Top right (logo section) -->
+<div id="logo">
+    <div id="logo_part1">Pixel</div>
+    <div id="logo_part2">master</div>
+</div>
+
+<!-- Bottom left (tools) -->
+<div id="tools">
+    <div id="fullscreen">
+        <img src="assets/images/fullscreen_transparent.png" alt="fullscreen" />
+    </div>
+    <div id="music">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <div id="credits" ng-click="vm.openModal('credits-modal')">Credits</div>
+    <div id="legal" ng-click="vm.openModal('legal-modal')">Legal</div>
+</div>
+
+<!-- Bottom right (socials and save) -->
+<div id="tools2">
+    <div id="games-found" ng-click="vm.openModal('games-found-modal')">Jeux trouvés</div>
+    <div id="save">Sauvegarder</div>
+</div>
+
+
+
+
+
+
+
+
+<!-- *************************************** MODAL *************************************** -->
+
+<!-- Input modal window -->
+<modal id="custom-modal-2">
+    <div class="modal">
+        <div class="modal-body">
+            <input type="text" name="game_name" id="game_name" ng-model="vm.gameName" ng-keyup="$event.keyCode == 13 && vm.evaluation()"/>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>
+
+
+<!-- Good answer modal window -->
+<modal id="good-answer">
+    <div class="modal">
+        <div class="modal-body">
+            <div id="good-answer-content">
+                <img src="assets/images/games/{{vm.gameNameImage}}.jpg" alt="game image" />
+                <div id="explosion1"></div>
+                <div id="explosion2"></div>
+                
+                <!--
+                <img src="assets/images/star-4-48.png" alt="star" class="star" />
+                <img src="assets/images/star-4-48.png" alt="star" class="star" />
+                <img src="assets/images/star-4-48.png" alt="star" class="star" />
+                <img src="assets/images/star-4-48.png" alt="star" class="star" />
+                <img src="assets/images/star-4-48.png" alt="star" class="star" />
+                <img src="assets/images/star-4-48.png" alt="star" class="star" />
+                -->
+                
+                <p>{{vm.gameName}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>
+
+
+<!-- Bad answers modal window = Glitch modal -->
+<modal id="glitch-modal">
+    <div class="modal">
+        <div class="modal-body">
+            <main>
+                <div class="message">Sorry, your browser does not support clip-path on HTML elements!</div>
+                            
+                <div class="content">
+                    <div class="glitch">
+                        <div class="glitch__img"></div>
+                        <div class="glitch__img"></div>
+                        <div class="glitch__img"></div>
+                        <div class="glitch__img"></div>
+                        <div class="glitch__img"></div>
+                    </div>
+                    <h2 class="content__title">{{vm.gameName}}</h2>
+                    <p class="content__text">Not in the list. Not in the list. Not in the list. Not in the list. Not in the list.
+                            Not in the list. Not in the list. Not in the list. Not in the list. Not in the list.
+                    </p>
+                </div>
+            </main>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>
+
+
+<!-- Game over modal window -->
+<modal id="game-over">
+    <div class="modal">
+        <div class="modal-body">
+            <h1>Game over</h1>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>
+
+
+<!-- Tuto score modal window -->
+<modal id="tuto-score">
+    <div class="modal">
+        <div class="modal-body">
+            <div class="tuto">
+                <div class="arrow">
+                    <img src="assets/images/arrow_white.png" alt="arrow" />
+                </div>
+                <div class="tuto-inner">
+                    <h2>Ton score</h2>
+                    <p>Trouve des références pour faire grimper ton score.</p>
+                    <div>
+                        <img src="assets/images/star2_white.png" alt="score icon" />
+                        <p class="spec">Cumule un max de points pour faire parti du classement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>
+
+
+<!-- Tuto games found modal window -->
+<modal id="tuto-found">
+    <div class="modal">
+        <div class="modal-body">
+            <div class="tuto">
+                <div class="tuto-inner">
+                    <h2>Repère-toi</h2>
+                    <p>Retrouve la liste de tout les jeux déjà trouvés juste ici.</p>
+                </div>
+                <div class="arrow">
+                    <img src="assets/images/arrow_white.png" alt="arrow" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>
+
+
+<!-- Games already found modal window -->
+<modal id="games-already-found">
+    <div class="modal">
+        <div class="modal-body">
+            <div class="tuto">
+                <div class="tuto-inner">
+                    <h2>Déjà trouvé</h2>
+                    <p>Tu peux consulter la liste de tout les jeux déjà trouvés juste ici.</p>
+                </div>
+                <div class="arrow">
+                    <img src="assets/images/arrow_white.png" alt="arrow" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>
+
+
+
+<!-- Credits modal window -->
+<modal id="credits-modal">
+    <div class="modal">
+        <div class="modal-body">
+            <h1>Pixel Master</h1>
+            <h2>Créé et Développé par</h2>
+            <div id="collaborators">
+                <div class="collab-row">
+                    <div class="role">Web Developper</div>
+                    <div class="name">Jérémy Germain</div>
+                </div>
+                <div class="collab-row">
+                    <div class="role">Web Developper</div>
+                    <div class="name">Julien Hans</div>
+                </div>
+                <div class="collab-row">
+                    <div class="role">Back-End Developper</div>
+                    <div class="name">Nicolas Paris</div>
+                </div>
+                <div class="collab-row">
+                    <div class="role">Front-End Developper</div>
+                    <div class="name">Imane Zouhri</div>
+                </div>
+            </div>
+            <p>Cette application est un clone de PopCorn TV.</p>
+            <p>Elle a été développée dans le cadre d'un projet universitaire.</p>
+            <p>Vous pouvez retrouver l'original ici : <a href="https://www.popcorntv.fr/">PopCorn TV</a></p>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>
+
+
+<!-- Legal modal window -->
+<modal id="legal-modal">
+    <div class="modal">
+        <div class="modal-body">
+            <h1>Pixel Master</h1>
+            <h2>Mentions légales</h2>
+            <h3>Editeur</h3>
+            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ultrices vel est sed condimentum. Morbi gravida, 
+                sem et malesuada consectetur, dolor nisi sollicitudin mauris, non dapibus nibh erat ut risus. Vestibulum a sem id purus 
+                congue semper at sit amet sapien. Proin in sollicitudin quam. Cras vel tellus a enim sollicitudin egestas. Sed lacus nisl,
+                luctus id nisi pretium, aliquam malesuada ipsum. Fusce ut rutrum arcu. Ut ac tincidunt ante. Sed malesuada, erat ut 
+                consequat tempor, lectus nisi varius dui, sed pharetra magna dui sit amet nunc. Praesent lacinia aliquam nibh, eu 
+                lacinia dolor rhoncus non. Sed rhoncus est et ultrices mollis.
+            </p>
+
+            <h3>Hébérgement</h3>
+            <p> Mauris vel nibh sagittis sem pulvinar pulvinar sed sed massa. Sed laoreet risus eget eleifend pulvinar. Pellentesque 
+                habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis consequat, purus vel malesuada 
+                laoreet, nibh felis tempus massa, nec tincidunt nisl est ac urna. Proin tincidunt mattis eros, et aliquet augue congue 
+                vitae. Etiam pellentesque, mauris vel gravida blandit, quam nisi dictum ante, vitae facilisis augue purus nec libero.
+                Nulla viverra nisi mauris, quis condimentum nulla euismod ut. Duis interdum purus sit amet lacus maximus, et fringilla 
+                metus suscipit. Sed bibendum sapien sit amet nisl scelerisque, ac ullamcorper mauris tempor. Aenean tincidunt vestibulum 
+                ipsum, ac placerat massa cursus quis. In massa orci, ultricies hendrerit eros quis, pellentesque posuere turpis. In congue
+                sit amet ante ut eleifend. Proin ut neque non urna mattis consequat. 
+            </p>
+
+            <h3>Données personnelles</h3>
+            <p>Vivamus vel blandit nulla. Mauris fermentum id neque non laoreet. Orci varius natoque penatibus et magnis dis parturient
+                montes, nascetur ridiculus mus. Quisque at nibh lectus. Nunc bibendum diam augue, ac pretium nulla maximus nec. Vivamus 
+                tincidunt nibh lorem, eu porta velit porttitor eu. Cras enim sem, volutpat in sem at, venenatis pharetra elit. Quisque
+                vel semper justo. Nulla eget urna eu dolor cursus lobortis. Aliquam laoreet est ac odio sollicitudin gravida. Pellentesque 
+                tincidunt tortor eu suscipit facilisis. Aliquam tincidunt tortor pretium ex suscipit, in rhoncus erat tincidunt. Praesent 
+                pulvinar feugiat metus, et aliquet lectus. Vestibulum rutrum diam sed lacus finibus venenatis. Donec finibus dolor nisi,
+                sed dignissim elit aliquet quis. </p>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>
+
+
+<!-- TEST de formes css -->
+<modal id="games-found-modal">
+    <div class="modal">
+        <div class="modal-body">
+            <div class="gta-sup"></div>
+            <div class="dead-space"></div>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>

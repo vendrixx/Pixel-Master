@@ -1,0 +1,649 @@
+/********** GENERAL **********/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: "Handletter";
+    src: url("../assets/fonts/Handletter.otf");
+}
+@font-face {
+    font-family: "Geomanist";
+    src: url("../assets/fonts/Geomanist-Regular.otf");
+}
+@font-face {
+    font-family: "Geomanist Bold";
+    src: url("../assets/fonts/hinted-Geomanist-Bold.ttf");
+}
+
+/* Test commit*/
+#id-qui-nexiste-pas {
+    color: #fff;
+    font-size: 18px;
+}
+
+::selection {
+    background: #ccc;
+}
+
+::-moz-selection {
+    background: #ccc;
+}
+
+body {
+    font-family: 'Geomanist';
+    /*background: url('../assets/images/photomontage.jpg');*/
+    background: url(../assets/images/photomontage-test-modif.jpg) no-repeat 50% 0;
+    background-size: cover;
+    background-color: #242424;
+    color: #fff;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.35);
+    height: 100vh;
+    text-shadow: 1px 0 2px black, 0 1px 4px black;
+}
+
+
+
+
+
+/********** HUD **********/
+
+/* Top left (user section) */
+#user {
+    /*background: lightgray;*/
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+#profil, #score, #found {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+#profil {
+    border: 3px solid #acacac;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+#profil:hover {
+    border-color: #fff;
+    cursor: pointer;
+    transition: 0.5s;
+}
+#profil > img {
+    width: 45px;
+    margin: 15px;
+}
+
+
+#score {
+    position: relative;
+    padding: 0 20px;
+    border-right: 2px solid rgb(190,190,190, 0.8);
+}
+#score_label {
+    display: block;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+#score_number {
+    font-size: 30px;
+    /*line-height: 25px;*/
+    display: flex;
+    align-items: baseline;
+}
+#score_number > span {
+    vertical-align: middle;
+    margin-right: 7px;
+    /* Animation glow */
+    -webkit-transition: text-shadow 1s linear;
+    -moz-transition: text-shadow 1s linear;
+    -ms-transition: text-shadow 1s linear;
+    -o-transition: text-shadow 1s linear;
+    transition: text-shadow 1s linear;
+}
+#score_number > span.glow,
+#found > #nb_found.glow {
+    text-shadow: 0px 0px 7px #fff, 0 0 10px #fff;
+}    
+#score_number > img {
+    height: 25px;
+}
+
+
+#found {
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: center;
+}
+#found > #nb_found {
+    display: block;
+    /* Animation glow */
+    -webkit-transition: text-shadow 1s linear;
+    -moz-transition: text-shadow 1s linear;
+    -ms-transition: text-shadow 1s linear;
+    -o-transition: text-shadow 1s linear;
+    transition: text-shadow 1s linear;
+}
+/*#found > #error {
+    font-family: "";
+}*/
+#found > #error > span {
+    width: 20%;
+    display: inline-block;
+}
+#found > #error > span.bold {
+    font-weight: bold;
+}
+#found > #error > span:nth-child(2) {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+
+/* Top right (logo) */
+#logo {
+    font-family: "Handletter";
+}
+#logo_part1 {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    font-size: 100px;
+}
+#logo_part2 {
+    position: absolute;
+    top: 104px;
+    right: 70px;
+    font-size: 32px;
+}
+
+
+/* Bottom left (tools) */
+#tools {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    display: inline-flex;
+    font-size: 13px;
+}
+#tools div {
+    margin: 0 15px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+}
+#tools #music .bar {
+    display: inline-block;
+    width: 4px;
+    height: 1px;
+    margin: 0px;
+    background: #fff;
+    animation: equalizer 1s infinite; 
+}
+#tools #music .bar:nth-child(2) {
+    animation-delay: 0.5s;
+}
+#tools #credits:hover, #tools #legal:hover {
+    border-bottom: 1px solid;
+}
+#tools div:hover {
+    cursor: pointer;
+}
+#tools img {
+    width: 15px;
+    vertical-align: middle;
+}
+@keyframes equalizer {
+    0% {
+        height: 1px;
+    }
+    50% {
+        height: 10px;
+    }
+    100% {
+        height: 1px;
+    }
+}
+
+
+/* Bottom right (tools2) */
+#tools2 {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    display: inline-flex;
+    font-size: 13px;
+}
+#tools2 div {
+    margin: 0 15px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+}
+#tools2 div:hover {
+    border-bottom: 1px solid;
+    cursor: pointer;
+}
+#tools2 #games-found {
+    position: relative;
+}
+
+
+
+
+
+
+/********** MODAL WINDOWS **********/
+
+/* General */
+modal {
+    display: none;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    z-index: 1000;
+    overflow: auto;
+}
+
+.modal-body {
+    padding: 20px;
+    background: transparent;
+    /*background: grey;
+    margin: 40px;*/
+    /*Input area vertical align*/
+    margin: 30vh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+#custom-modal-2 > .modal > .modal-body,
+#good-answer > .modal > .modal-body {
+    background: transparent;
+}
+
+.modal-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    opacity: 0.75;
+    z-index: 900;
+}
+.modal {
+    cursor: url(../assets/images/cross-transparent-small.png), auto!important;
+}
+
+.modal-open {
+    overflow: hidden;
+}
+
+/* Input (game name) */
+#game_name {
+    height: 100%;
+    width: 100%;
+    font-family: 'Geomanist Bold';
+    font-size: 72px;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    word-spacing: 10px;
+    border: none;
+    background: transparent;
+}
+
+
+
+/* Good answers */
+#good-answer-content {
+    position: relative;
+    text-align: center;
+    /*width: 50%;
+    height: 50%;*
+    overflow: hidden;*/
+}
+#good-answer-content > img {
+    width: 250px;
+    /*border: 4px solid;*/
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+    /*Animation*/
+    animation: grow 2.7s;
+    animation-timing-function: cubic-bezier(.77,0,.18,1);
+    /*animation-iteration-count: infinite;*/
+}
+#good-answer-content > p {
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    word-spacing: 0.2em;
+    /*Animation*/
+    animation: textAppear .5s;
+    animation-delay: 1s;
+}
+
+#explosion1, #explosion2 {
+    width: 240px;
+    height: 240px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    border-radius: 50%;
+    border: 3px solid #ccc;
+    border-style: dotted;
+    display: none; /*Ne pas afficher pour l'instant*/
+    
+}
+#explosion1 {
+    animation: explosion 1.5s;
+    animation-delay: .4s;
+}
+#explosion2 {
+    animation: explosion 1.5s;
+    animation-delay: .5s;
+}/*
+#explosion3 {
+    animation: explosion 1s;
+    animation-delay: 1.2s;
+}*/
+#good-answer-content .star {
+    position: absolute;
+    width: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 95px;
+    animation: explode 2s;
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(0);
+    }
+    20%, 85% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes textAppea {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes explosion {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(7);
+    }
+}
+
+@keyframes explode {
+    from { right: 0 }
+    to { right: 400px; }
+}
+
+
+#toggle {
+    width: 100%;
+    height: 100vh;
+    background: rgb(220,10,10, 1);
+}
+
+
+/* Bad answers */
+#glitch-modal .modal-body {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Game Over */
+#game-over .modal-body {
+    text-align: center;
+    font-size: 42px;
+}
+
+
+/* Tuto score */
+#tuto-score .modal-body {
+    margin: 0;
+    padding: 2px;
+    position: absolute;
+    top: 30px;
+    left: 250px;
+    width: 400px;
+    /*height: 200px;
+    background: #000;*/
+    box-sizing: border-box;
+}
+.tuto {
+    display: flex;
+    border: 1px solid #acacac;
+    padding: 20px;
+    background: #000;
+}
+#tuto-score .tuto .arrow {
+    position: absolute;
+    left: 22px;
+    display: inline-block;
+    vertical-align: middle;
+    animation: movement-left-right 1s infinite;
+    animation-timing-function: ease-in-out;
+}
+#tuto-score .tuto .arrow img {
+    width: 30px;
+    transform: rotate(180deg);
+}
+.tuto .tuto-inner {
+    display: inline-block;
+    margin-left: 80px;
+}
+.tuto .tuto-inner img {
+    width: 30px;
+    float: left;
+    margin: 7px 10px 5px 0px;
+}
+#tuto-score h2 {
+    display: inline-block;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+#tuto-score p {
+    color: #acacac;
+}
+#tuto-score p.spec {
+    color: #fff;
+    margin-top: 15px;
+}
+
+@keyframes movement-left-right {
+    0% {
+        left: 22px;
+    }
+
+    50% {
+        left: 50px;
+    }
+
+    100% {
+        left: 22px;
+    }
+}
+
+/* Tuto games found */
+#tuto-found .modal-body,
+#games-already-found .modal-body {
+    margin: 0;
+    padding: 2px;
+    position: absolute;
+    top: initial;
+    left: initial;
+    bottom: 70px;
+    right: 30px;
+    width: 300px;
+    /*height: 140px;*/
+    background: #000;
+    box-sizing: border-box;
+}
+#tuto-found .tuto,
+#games-already-found .tuto {
+    height: 185px;
+}
+#tuto-found .tuto .arrow,
+#games-already-found .tuto .arrow {
+    position: absolute;
+    bottom: 22px;
+    left: 132px;
+    display: inline-block;
+    vertical-align: middle;
+    animation: movement-top-down 1s infinite;
+    animation-timing-function: ease-in-out;
+}
+#tuto-found .tuto .arrow img,
+#games-already-found .tuto .arrow img {
+    width: 30px;
+    transform: rotate(90deg);
+}
+#tuto-found .tuto .tuto-inner,
+#games-already-found .tuto .tuto-inner {
+    text-align: center;
+    margin: 0;
+}
+#tuto-found .tuto .tuto-inner h2,
+#games-already-found .tuto .tuto-inner h2 {
+    margin-bottom: 10px;
+}
+@keyframes movement-top-down {
+    0% {
+        bottom: 12px;
+    }
+
+    50% {
+        bottom: 32px;
+    }
+
+    100% {
+        bottom: 12px;
+    }
+}
+
+
+
+
+/* Credits */
+#credits-modal .modal-body {
+    text-align: center;
+    height: 50vh;
+    margin-top: 25vh;
+    margin-bottom: 25vh;
+    margin-left: 23%;
+    margin-right: 23%;
+}
+#credits-modal h2 {
+    text-align: center;
+    text-transform: uppercase;
+    color: #acacac;
+    font-size: 16px;
+    margin-top: 30px;
+}
+#credits-modal #collaborators {
+    font-size: 22px;
+    margin: 40px 0;
+}
+#credits-modal .collab-row {
+    margin: 12px 0;
+}
+#credits-modal #collaborators .role,
+#credits-modal #collaborators .name {
+    display: inline-block;
+    width: 48%;
+}
+#credits-modal #collaborators .role {
+    float: left;
+    text-align: right;
+    margin-right: 2%;
+    color: #acacac;
+}
+#credits-modal #collaborators .name {
+    margin-left: 2%;
+    text-align: left;
+}
+#credits-modal a {
+    color: #acacac;
+}
+
+
+/* Legal */
+#legal-modal .modal-body {
+    position: initial;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+#legal-modal h1 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+#legal-modal h2 {
+    margin: 20px 0;
+}
+#legal-modal h3 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+
+
+/* TEST de formes css */
+#games-found-modal .modal-body {
+    margin: 0;
+    padding: 0;
+}
+.gta-sup {
+	border-bottom: 83px solid #555;
+    border-left: 94px solid transparent;
+    border-right: 71px solid transparent;
+    height: 0px;
+    width: 483px;
+    position: absolute;
+    top: 0;
+    left: 249px;
+}
+
+.dead-space {
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-left: 254px solid transparent;
+    border-right: 182px solid transparent;
+    border-top: 290px solid red;
+    right: 425px;
+}

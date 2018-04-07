@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Project Prototype</title>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/glitch.css" rel="stylesheet"/>
+    <link href="css/base.css" rel="stylesheet"/>
+    <script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
+    <!-- application less -->
+    <!--<link href="../angularjs-custom-modal-example-master/_content/modal.less" rel="stylesheet/less" type="text/css" />
+    <link href="../angularjs-custom-modal-example-master/_content/app.less" rel="stylesheet/less" type="text/css" />
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>-->
+</head>
+<body modal type class="demo-1 loading">
+
+    <!-- main app container -->
+    <div>
+        <ui-view></ui-view>
+    </div>
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    
+    <!-- Angular -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+    <!-- App -->
+    <script type="text/javascript" src="app.js" ></script>
+    <script type="text/javascript" src="controllers/modal.controller.js" ></script>
+    <script type="text/javascript" src="controllers/game.controller.js" ></script>
+    <script type="text/javascript" src="directives/modal.directive.js" ></script>
+    <script type="text/javascript" src="directives/game.directive.js" ></script>
+    <script type="text/javascript" src="directives/type.directive.js" ></script>
+    <script type="text/javascript" src="services/modal.service.js" ></script>
+    <!-- Glitch -->
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+	<script src="js/demo.js"></script>
+</body>
+</html>
