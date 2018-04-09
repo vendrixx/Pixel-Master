@@ -17,7 +17,7 @@
         .module('app')
         .controller('Controllers.GameController', Controller);
 
-function Controller(ModalService, $scope, $firebaseArray/*, $firebaseSimpleLogin*/) {
+function Controller(ModalService, AuthService, $scope, $firebaseArray/*, $firebaseSimpleLogin*/) {
         var vm = this;
 
         vm.openModal = openModal;
@@ -26,9 +26,11 @@ function Controller(ModalService, $scope, $firebaseArray/*, $firebaseSimpleLogin
         vm.success = success;
         vm.fail = fail;
         vm.alreadyFound = alreadyFound;
+        vm.save = save;
 
 
         initController();
+        load();
 
 
         var ref = firebase.database().ref().child('games');
@@ -301,6 +303,80 @@ function Controller(ModalService, $scope, $firebaseArray/*, $firebaseSimpleLogin
                     }
                 }    
             }
+        }
+
+
+        /**
+         * Chargement d'une partie
+         */
+        function load() {
+            $scope.connectedUser = AuthService.getUser();
+
+            var ref = firebase.database().ref().child('users');
+            $scope.users = $firebaseArray(ref);
+
+            $scope.users.$ref().once('value', function(snap) {
+                angular.forEach(snap.val(), function(index) {
+                    if(index.email == $scope.connectedUser) {
+                        console.log('Bienvenue ' + index.email);
+                        console.log('Votre score est de ' + index.score);
+                        updateScore(index.score);
+                        vm.gamesFound = index.gamesFound;
+                        vm.gamesFoundDisplay = formatNumberLength(vm.gamesFound, 2);
+                        vm.gamesFoundList = index.gamesFoundList;
+                        console.log('Liste des jeux trouvés : ' + vm.gamesFoundList);
+                        vm.wrongAnswers = index.wrongAnswers;
+                        $("#error > span:nth-child(" + vm.wrongAnswers + ")").addClass('bold');
+                    }
+
+                });
+            });
+        }
+
+
+        /**
+         * Sauvegarde d'une partie
+         */
+        function save() {
+            console.log('Dans save()');
+            $scope.connectedUser = AuthService.getUser();
+            
+            var ref = firebase.database().ref().child('users');
+            $scope.users = $firebaseArray(ref);
+
+            console.log('Users length ' + $scope.users.length);
+            var userIndex = $scope.users.length;
+            var i = 0;
+            var userExist = false;
+
+            $scope.users.$ref().once('value', function(snap) {
+                angular.forEach(snap.val(), function(index) {
+                    //si l'utilisateur existe déjà on met à jour ses infos
+                    if(index.email == $scope.connectedUser) {
+                        console.log('L\'utilisateur existe déjà');
+                        userIndex = i;
+                        userExist = true;
+                        console.log(userIndex);
+                    }
+                    i++;
+                });
+            });
+
+            console.log(userExist);
+            if(!userExist) {
+                userIndex = i;
+                console.log('Nouvel indice : ' + userIndex);
+            }
+
+            console.log('Add');
+            firebase.database().ref('users').child(userIndex).set({
+                email: $scope.connectedUser,
+                gamesFound: vm.gamesFound,
+                gamesFoundList: vm.gamesFoundList,
+                score: vm.score,
+                wrongAnswers : vm.wrongAnswers
+            });
+
         }
 
         

@@ -28,6 +28,7 @@
                         ModalService.Close(attrs.id);
                     }
                     document.getElementById("score").style.zIndex = "1";
+                    document.getElementById("games-found").style.zIndex = "1";
                     if (!target.closest('.modal-body').length) {
                         scope.$evalAsync(Close);
 

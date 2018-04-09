@@ -1,50 +1,3 @@
-/*(function () {
-    'use strict';
-
-    angular
-        .module('app')
-        .controller('Controllers.AuthController', Controller);
-
-function Controller(AuthService, $scope) {
-        var vm = this;
-
-        vm.register = register;
-        vm.login = login;
-        vm.logout = logout;
-        vm.isLoggedIn = isLoggedIn;
-        vm.sendWelcomeEmail = sendWelcomeEmail;
-
-        initController();
-
-        function initController() {
-            vm.bodyText = 'Bla bla bla';
-        }
-        
-        function register(user) {
-            AuthService.register(user);
-        }
-        function login(user) {
-            AuthService.login(user);
-        }
-     
-        function logout() {
-            AuthService.logout();
-        }
-     
-        function isLoggedIn() {
-            AuthService.isLoggedIn();
-        }
-     
-        function sendWelcomeEmail(emailAddress) {
-            AuthService.sendWelcomeEmail(emailAddress);
-        }
-
-        
-    }
-
-})();
-*/
-
 (function() {
     'use strict';
 
@@ -77,30 +30,5 @@ function Controller(AuthService, $scope) {
 
     }])
 
-    /*.service('CommonProp', ['$location', '$firebaseAuth', function($location, $firebaseAuth){
-        var user = "";
-        var auth = $firebaseAuth();
-
-        return {
-            getUser: function(){
-                if(user == ""){
-                    user = localStorage.getItem("userEmail");
-                }
-                return user;
-            },
-            setUser: function(value){
-                localStorage.setItem("userEmail", value);
-                user = value;
-            },
-            logoutUser: function(){
-                auth.$signOut();
-                console.log("Logged Out Succesfully");
-                user = "";
-                localStorage.removeItem('userEmail');
-                $location.path('/');
-                console.log("Log out");
-            }
-        };
-    }]);*/
 
 }());

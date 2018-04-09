@@ -35,6 +35,12 @@
                 templateUrl: 'partials/log.view.html',
                 controller: 'Controllers.AuthController',
                 controllerAs: 'vm'
+            })
+            .state('register', {
+                url: '/register',
+                templateUrl: 'partials/register.view.html',
+                controller: 'Controllers.RegisterController',
+                controllerAs: 'vm'
             });
     }
 
