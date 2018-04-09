@@ -1,18 +1,28 @@
 "# Pixel-Master" 
-"# Pixel-Master" 
+"# Pixel-Master"
 
-Ce qu'il reste à faire :
+
+Commit #2 :
+- Ajout d'une page d'accueil basique
+- Ajout d'une page de connexion basique (on ne peut pas encore s'inscrire -> se connecter avec "email@email.com" et mot de passe : "email.com")
+- Connexion de l'appli Ã  une base de donnÃ©e Firebase
+- Le systÃ¨me est dÃ©sormais plus permissif. On peut faire des petites erreurs dans le nom du jeu.
+
+
+##############################################################################################################
+
+Ce qu'il reste ï¿½ faire :
 - FAIT | Finir le tuto.
 - Une page d'accueil avec "commencer la partie", "voir le classement" et "s'inscrire".
-- FAIT | Une animation lors des mauvaises réponses.
+- FAIT | Une animation lors des mauvaises rï¿½ponses.
 - Un game over + un end game.
-- La liste des jeux déjà trouvés.
-- Lier l'application à une bdd (firebase).
+- La liste des jeux dï¿½jï¿½ trouvï¿½s.
+- Lier l'application ï¿½ une bdd (firebase).
 - Le menu avec le logos des jeux.
-- FAIT | Une croix lorsque la modale peut être fermée au clique.
+- FAIT | Une croix lorsque la modale peut ï¿½tre fermï¿½e au clique.
 - Ajouter 'Taper directement le nom sur votre clavier" lors de la saisie.
 - Ajouter la fonction fullscreen.
-- Ajouter un tuto mauvaise réponses donc score -50.
+- Ajouter un tuto mauvaise rï¿½ponses donc score -50.
 
 
 
@@ -29,7 +39,7 @@ Eventuellement :
 
 
 
-Les choses à corriger :
-- FAIT | Le focus sur le champ texte lorsque l'on a déjà entré un nom (mauvais focus, la première lettre n'est pas prise en compte).
+Les choses ï¿½ corriger :
+- FAIT | Le focus sur le champ texte lorsque l'on a dï¿½jï¿½ entrï¿½ un nom (mauvais focus, la premiï¿½re lettre n'est pas prise en compte).
 - DEMI-RESOLU | L'image principale ne contraste pas assez avec le HUD.
 - FAIT | Le champ texte ne se vide pas lorsque l'on clique sur le background de la modale.
