@@ -1,0 +1,30 @@
+<div id="log">
+    <!--<a href="#">
+        <div id="inscription">
+            <h1>S'inscrire</h1>
+            <h3>Pas encore de compte ?<br>Inscris-toi dès maintenant !</h3>
+        </div>
+    </a>-->
+    <div id="log-container">
+        <div id="connexion">
+            <h1>Connection</h1>
+            <form role="form" name="loginForm" novalidate="">
+                <div class="" ng-class="{'has-error': loginForm.email.$invalid && loginForm.email.$touched}">
+                    <input type="email" name="email" ng-model="user.email" class="form-control" placeholder="Adresse email" required="" />
+                    <small class="help-block" ng-show="loginForm.email.$invalid && loginForm.email.$touched">Entez une adresse email valide.</small>
+                </div>
+                <div class="" ng-class="{'has-error': loginForm.password.$invalid && loginForm.password.$touched}">
+                    <input type="password" name="password" ng-model="user.password" class="form-control" placeholder="Mot de passe" required="" ng-minlength = 8 />
+                    <small class="help-block" ng-show="loginForm.password.$error.minlength && loginForm.password.$touched">Le mot de passe doit contenir au moins 8 caractères.</small>
+                </div>
+                <div id="register">
+                    <label><a href="#/register">S'inscrire</a></label>
+                </div>
+                <div class="col-md-6 col-md-offset-3">
+                    <p ng-show="errMsg" style="color: red;">{{errorMessage}}</p>
+                    <button type="submit" class="btn btn-lg btn-primary btn-block" ng-disabled="loginForm.$invalid" ng-click="signIn()">Se connecter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

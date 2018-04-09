@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pixel-Master Menu</title>
+</head>
+<body ng-controller="WelcomeCtrl">
+
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a href="/" class="navbar-brand">Pixel-Master</a>
+		</div>
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="#/principal">Jeu</a></li>
+			<li ng-click="logout()"><a href="#">Se deconnecter</a></li>
+		</ul>
+	</div>
+</nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h3>Connecté en temps que {{username}} !</h3>
+		</div>
+	</div>
+</div>
+
+<!--<div class="container">
+	<div class="row" ng-repeat="article in articles">
+		<div class="col-md-12 well well-sm">
+			<h4>{{article.name}}</h4>
+		</div>
+	</div>
+</div>-->
+
+</body>
+</html>

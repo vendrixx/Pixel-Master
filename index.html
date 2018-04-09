@@ -15,7 +15,7 @@
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>-->
 </head>
-<body modal type class="demo-1 loading">
+<body auth class="demo-1 loading">
 
     <!-- main app container -->
     <div>
@@ -23,6 +23,13 @@
     </div>
 
 
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-database.js"></script>
+    
+    <!-- JQuery -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
@@ -30,14 +37,17 @@
     <!-- Angular -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
     <!-- App -->
     <script type="text/javascript" src="app.js" ></script>
-    <script type="text/javascript" src="controllers/modal.controller.js" ></script>
+    <script type="text/javascript" src="controllers/auth.controller.js" ></script>
     <script type="text/javascript" src="controllers/game.controller.js" ></script>
+    <script type="text/javascript" src="controllers/welcome.controller.js" ></script>
     <script type="text/javascript" src="directives/modal.directive.js" ></script>
-    <script type="text/javascript" src="directives/game.directive.js" ></script>
-    <script type="text/javascript" src="directives/type.directive.js" ></script>
+    <!--<script type="text/javascript" src="directives/type.directive.js" ></script>-->
     <script type="text/javascript" src="services/modal.service.js" ></script>
+    <!--<script type="text/javascript" src="services/auth.service.js" ></script>-->
     <!-- Glitch -->
     <script src="js/imagesloaded.pkgd.min.js"></script>
 	<script src="js/demo.js"></script>

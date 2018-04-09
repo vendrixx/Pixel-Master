@@ -8,7 +8,8 @@
     function Directive(ModalService) {
         return {
             link: function(scope, element, attrs, controller) {
-                element.bind("keydown", function(event) { // lie les évenements keydown à une fonction
+                //console.log(element);
+               /* $('body').bind("keydown", function(event) { // lie les évenements keydown à une fonction
                     var keyCode = event.which || event.keyCode;
                     
                     var inp = String.fromCharCode(keyCode); // transformation du code clavier (int) en string
@@ -19,7 +20,7 @@
                         // focus sur la zone de saisie de texte
                         angular.element('#game_name').focus();
                     }
-                });
+                });*/
             },
         }
     };

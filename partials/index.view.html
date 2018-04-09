@@ -1,8 +1,9 @@
+<div class="principal">
 <!-- *************************************** HUD *************************************** -->
 
 <!-- Top left (user section) -->
 <div id="user">
-    <div id="profil" ng-click="vm.openModal('game-over')">
+    <div id="profil" ng-click="">
         <img src="assets/images/mario-profil-icone-gris.png" alt="profil icon"/>
     </div>
     <div id="score">
@@ -44,6 +45,7 @@
 <div id="tools2">
     <div id="games-found" ng-click="vm.openModal('games-found-modal')">Jeux trouvés</div>
     <div id="save">Sauvegarder</div>
+    <div id="logout" ng-click="logout()"><a href="#/welcome">Menu</a></div>
 </div>
 
 
@@ -265,6 +267,19 @@
 </modal>
 
 
+<!-- Test de lien vers une autre page -->
+<modal id="link">
+    <div class="modal">
+        <div class="modal-body">
+            <a href="#/">Home</a>
+            <a href="#/test-page">Test Page</a>
+            <a href="#/welcome">Welcome</a>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>
+
+
 <!-- TEST de formes css -->
 <modal id="games-found-modal">
     <div class="modal">
@@ -275,3 +290,5 @@
     </div>
     <div class="modal-background"></div>
 </modal>
+
+</div>
