@@ -14,15 +14,15 @@ Commit #2 :
 Ce qu'il reste à faire :
 - FAIT | Finir le tuto.
 - FAIT | Une page d'accueil avec "commencer la partie", "voir le classement" et "s'inscrire".
-- FAIT | Une animation lors des mauvaises r�ponses.
+- FAIT | Une animation lors des mauvaises réponses.
 - FAIT | Un game over + un end game.
 - La liste des jeux déjà trouvés.
 - FAIT | Lier l'application à une bdd (firebase).
 - Le menu avec le logos des jeux.
-- FAIT | Une croix lorsque la modale peut être ferm�e au clique.
+- FAIT | Une croix lorsque la modale peut être fermée au clique.
 - Ajouter 'Taper directement le nom sur votre clavier" lors de la saisie.
 - Ajouter la fonction fullscreen.
-- Ajouter un tuto mauvaise réponses donc score -50.
+- FAIT | Ajouter un tuto mauvaise réponses donc score -50.
 
 
 

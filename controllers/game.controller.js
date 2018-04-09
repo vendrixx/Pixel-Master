@@ -193,6 +193,16 @@ function Controller(ModalService, AuthService, $scope, $firebaseArray/*, $fireba
                     }
                 });
             }, 3500);
+
+            //affichage du tuto
+            setTimeout(function() {
+                $scope.$apply(function() {
+                    if(vm.wrongAnswers == 1) {
+                        ModalService.Open('tuto-score-neg');
+                        document.getElementById("error").style.zIndex = "1000";
+                    }
+                });
+            }, 4400);
         }
 
         /**

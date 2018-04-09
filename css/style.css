@@ -595,6 +595,72 @@ modal {
     }
 }
 
+/* Tuto score negative */
+#tuto-score-neg .modal-body {
+    margin: 0;
+    padding: 2px;
+    position: absolute;
+    top: 100px;
+    left: 230px;
+    width: 400px;
+    /*height: 200px;
+    background: #000;*/
+    box-sizing: border-box;
+}
+.tuto {
+    display: flex;
+    border: 1px solid #acacac;
+    padding: 20px;
+    background: #000;
+}
+#tuto-score-neg .tuto .arrow {
+    position: absolute;
+    left: 22px;
+    display: inline-block;
+    vertical-align: middle;
+    animation: movement-left-right 1s infinite;
+    animation-timing-function: ease-in-out;
+}
+#tuto-score-neg .tuto .arrow img {
+    width: 30px;
+    transform: rotate(270deg);
+}
+.tuto .tuto-inner {
+    display: inline-block;
+    margin-left: 80px;
+}
+.tuto .tuto-inner img {
+    width: 30px;
+    float: left;
+    margin: 7px 10px 5px 0px;
+}
+#tuto-score-neg h2 {
+    display: inline-block;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+#tuto-score-neg p {
+    color: #acacac;
+}
+#tuto-score-neg p.spec {
+    color: #fff;
+    margin-top: 15px;
+}
+
+@keyframes movement-left-right {
+    0% {
+        left: 22px;
+    }
+
+    50% {
+        left: 50px;
+    }
+
+    100% {
+        left: 22px;
+    }
+}
+
 /* Tuto games found */
 #tuto-found .modal-body,
 #games-already-found .modal-body {
