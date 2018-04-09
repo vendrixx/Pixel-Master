@@ -23,7 +23,7 @@
                 element.on('click', function (e) {
                     var target = $(e.target);
                     //fermeture au moindre clique sur la modale credits, legal ou glitch
-                    var modalToCloseOnClick = ["credits-modal", "legal-modal", "glitch-modal", "tuto-score", "tuto-found", "games-found-modal"]
+                    var modalToCloseOnClick = ["credits-modal", "legal-modal", "glitch-modal", "tuto-score", "tuto-score-neg", "tuto-found", "games-found-modal"]
                     if(modalToCloseOnClick.includes(attrs.id)) {
                         ModalService.Close(attrs.id);
                     }
@@ -36,6 +36,9 @@
                             angular.element('#game_name').val(""); //supprime la valeur du champ texte lorsque la fenêtre de saisie est fermée
                         }    
                         if(attrs.id == "tuto-score") {
+                            document.getElementById("score").style.zIndex = "1"; //on repasse le z-index à 1 après la fermeture du tuto
+                        }
+                        if(attrs.id == "tuto-score-neg") {
                             document.getElementById("score").style.zIndex = "1"; //on repasse le z-index à 1 après la fermeture du tuto
                         }
                         if(attrs.id == "tuto-found") {

@@ -22,7 +22,7 @@ Ce qu'il reste � faire :
 - FAIT | Une croix lorsque la modale peut �tre ferm�e au clique.
 - Ajouter 'Taper directement le nom sur votre clavier" lors de la saisie.
 - Ajouter la fonction fullscreen.
-- Ajouter un tuto mauvaise r�ponses donc score -50.
+- FAIT | Ajouter un tuto mauvaise r�ponses donc score -50.
 
 
 
