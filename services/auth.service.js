@@ -3,47 +3,30 @@
 
     angular
         .module('app')
-        .factory('AuthService', Service);
-
-    function Service($firebaseAuth, firebaseDataService, cityTimerService) {
-        var firebaseAuthObject = $firebaseAuth();
-        
-        var service = {
-            firebaseAuthObject: firebaseAuthObject,
-            register: register,
-            login: login,
-            logout: logout,
-            isLoggedIn: isLoggedIn,
-            sendWelcomeEmail: sendWelcomeEmail
-        };
-
-        return service;
-
-
-
-        function register(user) {
-            return firebaseAuthObject.$createUserWithEmailAndPassword(user.email, user.password);
-        }
-     
-        function login(user) {
-            return firebaseAuthObject.$signInWithEmailAndPassword(user.email, user.password);
-        }
-     
-        function logout() {
-            cityTimerService.reset();
-            firebaseAuthObject.$signOut();
-        }
-     
-        function isLoggedIn() {
-            return firebaseAuthObject.$getAuth();
-        }
-     
-        function sendWelcomeEmail(emailAddress) {
-            firebaseDataService.emails.push({
-                emailAddress: emailAddress
-            });
-        }
-
-    }
+        .service('AuthService', ['$location', '$firebaseAuth', function($location, $firebaseAuth){
+            var user = "";
+            var auth = $firebaseAuth();
     
-})();
+            return {
+                getUser: function(){
+                    if(user == ""){
+                        user = localStorage.getItem("userEmail");
+                    }
+                    return user;
+                },
+                setUser: function(value){
+                    localStorage.setItem("userEmail", value);
+                    user = value;
+                },
+                logoutUser: function(){
+                    auth.$signOut();
+                    console.log("Logged Out Succesfully");
+                    user = "";
+                    localStorage.removeItem('userEmail');
+                    $location.path('/');
+                    console.log("Log out");
+                }
+            };
+        }]);
+
+}());

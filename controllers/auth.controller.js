@@ -50,12 +50,12 @@ function Controller(AuthService, $scope) {
 
     angular.module('app')
 
-    .controller('Controllers.AuthController', ['$scope', '$firebaseAuth', '$location', 'CommonProp', function($scope, $firebaseAuth, $location, CommonProp){
+    .controller('Controllers.AuthController', ['$scope', '$firebaseAuth', '$location', 'AuthService', function($scope, $firebaseAuth, $location, AuthService){
 
-        $scope.username = CommonProp.getUser();
+        $scope.username = AuthService.getUser();
 
         if($scope.username){
-            $location.path('/principal');
+            $location.path('/game');
             console.log("User name = " + $scope.username);
         }
 
@@ -66,8 +66,8 @@ function Controller(AuthService, $scope) {
 
             auth.$signInWithEmailAndPassword(username, password).then(function(){
                 console.log("User Login Successful");
-                CommonProp.setUser($scope.user.email);
-                $location.path('/principal');
+                AuthService.setUser($scope.user.email);
+                $location.path('/game');
                 console.log("Yeah");
             }).catch(function(error){
                 $scope.errMsg = true;
@@ -77,7 +77,7 @@ function Controller(AuthService, $scope) {
 
     }])
 
-    .service('CommonProp', ['$location', '$firebaseAuth', function($location, $firebaseAuth){
+    /*.service('CommonProp', ['$location', '$firebaseAuth', function($location, $firebaseAuth){
         var user = "";
         var auth = $firebaseAuth();
 
@@ -101,6 +101,6 @@ function Controller(AuthService, $scope) {
                 console.log("Log out");
             }
         };
-    }]);
+    }]);*/
 
 }());

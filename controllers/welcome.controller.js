@@ -3,11 +3,11 @@
 
     angular.module('app')
 
-    .controller('WelcomeCtrl', ['$scope', 'CommonProp', '$firebaseArray', '$firebaseObject', '$location', function($scope, CommonProp, $firebaseArray, $firebaseObject, $location){
-        $scope.username = CommonProp.getUser();
+    .controller('WelcomeCtrl', ['$scope', 'AuthService', '$firebaseArray', '$firebaseObject', '$location', function($scope, AuthService, $firebaseArray, $firebaseObject, $location){
+        $scope.username = AuthService.getUser();
 
         if(!$scope.username){
-            //$location.path('/test-page.html');
+            $location.path('/log');
         }
 
         var ref = firebase.database().ref().child('games');
@@ -15,7 +15,7 @@
 
 
         $scope.logout = function(){
-            CommonProp.logoutUser();
+            AuthService.logoutUser();
         }
     }])
 }());

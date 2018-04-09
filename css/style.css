@@ -521,8 +521,9 @@ modal {
 }
 
 
-/* Game Over */
-#game-over .modal-body {
+/* Game Over & End Game*/
+#game-over .modal-body,
+#end-game .modal-body {
     text-align: center;
     font-size: 42px;
 }

@@ -3,7 +3,7 @@
 
 <!-- Top left (user section) -->
 <div id="user">
-    <div id="profil" ng-click="">
+    <div id="profil" ng-click="vm.openModal('end-game')">
         <img src="assets/images/mario-profil-icone-gris.png" alt="profil icon"/>
     </div>
     <div id="score">
@@ -45,7 +45,7 @@
 <div id="tools2">
     <div id="games-found" ng-click="vm.openModal('games-found-modal')">Jeux trouvés</div>
     <div id="save">Sauvegarder</div>
-    <div id="logout" ng-click="logout()"><a href="#/welcome">Menu</a></div>
+    <div id="logout" ng-click="logout()"><a href="#/menu">Menu</a></div>
 </div>
 
 
@@ -115,6 +115,17 @@
                     </p>
                 </div>
             </main>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>
+
+
+<!-- End game modal window -->
+<modal id="end-game">
+    <div class="modal">
+        <div class="modal-body">
+            <h1>Félicitations !</h1>
         </div>
     </div>
     <div class="modal-background"></div>

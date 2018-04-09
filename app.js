@@ -12,27 +12,21 @@
 
         // app routes
         $stateProvider
-            .state('principal', {
-                url: '/principal',
-                templateUrl: 'partials/index.view.html',
+            .state('game', {
+                url: '/game',
+                templateUrl: 'partials/game.view.html',
                 controller: 'Controllers.GameController',
                 controllerAs: 'vm'
             })
-            .state('test-page', {
-                url: '/test-page',
-                templateUrl: 'partials/test-page.html',
-                controller: 'Controllers.AuthController',
-                controllerAs: 'vm'
-            })
-            .state('welcome', {
-                url: '/welcome',
-                templateUrl: 'partials/welcome.html',
+            .state('menu', {
+                url: '/menu',
+                templateUrl: 'partials/menu.view.html',
                 controller: 'WelcomeCtrl',
                 controllerAs: 'vm'
             })
             .state('home', {
                 url: '/',
-                templateUrl: 'partials/home.html'/*,
+                templateUrl: 'partials/home.view.html'/*,
                 controller: 'Controllers.AuthController',
                 controllerAs: 'vm'*/
             })

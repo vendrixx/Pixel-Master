@@ -13,11 +13,11 @@ Commit #2 :
 
 Ce qu'il reste � faire :
 - FAIT | Finir le tuto.
-- Une page d'accueil avec "commencer la partie", "voir le classement" et "s'inscrire".
+- FAIT | Une page d'accueil avec "commencer la partie", "voir le classement" et "s'inscrire".
 - FAIT | Une animation lors des mauvaises r�ponses.
-- Un game over + un end game.
+- FAIT | Un game over + un end game.
 - La liste des jeux d�j� trouv�s.
-- Lier l'application � une bdd (firebase).
+- FAIT | Lier l'application � une bdd (firebase).
 - Le menu avec le logos des jeux.
 - FAIT | Une croix lorsque la modale peut �tre ferm�e au clique.
 - Ajouter 'Taper directement le nom sur votre clavier" lors de la saisie.

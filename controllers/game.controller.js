@@ -27,11 +27,6 @@ function Controller(ModalService, $scope, $firebaseArray/*, $firebaseSimpleLogin
         vm.fail = fail;
         vm.alreadyFound = alreadyFound;
 
-        vm.register = register;
-        vm.login = login;
-        vm.logout = logout;
-        vm.isLoggedIn = isLoggedIn;
-        vm.sendWelcomeEmail = sendWelcomeEmail;
 
         initController();
 
@@ -48,31 +43,6 @@ function Controller(ModalService, $scope, $firebaseArray/*, $firebaseSimpleLogin
         });
         console.log(this.games);
 
-
-        /* Test authentification firebase */
-        function register(user) {
-            AuthService.register(user);
-        }
-        function login(user) {
-            AuthService.login(user);
-        }
-     
-        function logout() {
-            AuthService.logout();
-        }
-     
-        function isLoggedIn() {
-            AuthService.isLoggedIn();
-        }
-     
-        function sendWelcomeEmail(emailAddress) {
-            AuthService.sendWelcomeEmail(emailAddress);
-        }
-        /*var firebaseObj = new Firebase("");
-        $scope.SignIn = function($scope) {
-            var username = $scope.user.email;
-            var password = $scope.user.password;
-        }*/
 
         function initController() {
             vm.bodyText = 'This text can be sd,vl.....';
@@ -187,6 +157,8 @@ function Controller(ModalService, $scope, $firebaseArray/*, $firebaseSimpleLogin
                 } else if(vm.gamesFound == 2) {
                     ModalService.Open('tuto-found');
                     document.getElementById("games-found").style.zIndex = "1000";
+                } else if(vm.gamesFound == 14) {
+                    ModalService.Open('end-game');
                 }
                 });
             }, 4400);
