@@ -27,8 +27,10 @@
                     if(modalToCloseOnClick.includes(attrs.id)) {
                         ModalService.Close(attrs.id);
                     }
+                    //des fois ça bug donc on le fait tout le temps pour être sur
                     document.getElementById("score").style.zIndex = "1";
                     document.getElementById("games-found").style.zIndex = "1";
+                    document.getElementById("score").style.zIndex = "1";
                     if (!target.closest('.modal-body').length) {
                         scope.$evalAsync(Close);
 
@@ -40,7 +42,7 @@
                             document.getElementById("score").style.zIndex = "1"; //on repasse le z-index à 1 après la fermeture du tuto
                         }
                         if(attrs.id == "tuto-score-neg") {
-                            document.getElementById("score").style.zIndex = "1"; //on repasse le z-index à 1 après la fermeture du tuto
+                            document.getElementById("error").style.zIndex = "1"; //on repasse le z-index à 1 après la fermeture du tuto
                         }
                         if(attrs.id == "tuto-found") {
                             document.getElementById("games-found").style.zIndex = "1"; //on repasse le z-index à 1 après la fermeture du tuto

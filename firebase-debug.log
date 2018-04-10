@@ -1,40 +1,40 @@
-[debug] [2018-04-09T08:26:09.123Z] ----------------------------------------------------------------------
-[debug] [2018-04-09T08:26:09.123Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\jerem\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
-[debug] [2018-04-09T08:26:09.123Z] CLI Version:   3.18.2
-[debug] [2018-04-09T08:26:09.123Z] Platform:      win32
-[debug] [2018-04-09T08:26:09.123Z] Node Version:  v8.9.4
-[debug] [2018-04-09T08:26:09.123Z] Time:          Mon Apr 09 2018 10:26:09 GMT+0200 (Paris, Madrid (heure d’été))
-[debug] [2018-04-09T08:26:09.123Z] ----------------------------------------------------------------------
+[debug] [2018-04-10T14:25:25.418Z] ----------------------------------------------------------------------
+[debug] [2018-04-10T14:25:25.418Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\jerem\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-04-10T14:25:25.418Z] CLI Version:   3.18.2
+[debug] [2018-04-10T14:25:25.418Z] Platform:      win32
+[debug] [2018-04-10T14:25:25.418Z] Node Version:  v8.9.4
+[debug] [2018-04-10T14:25:25.418Z] Time:          Tue Apr 10 2018 16:25:25 GMT+0200 (Paris, Madrid (heure d’été))
+[debug] [2018-04-10T14:25:25.418Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2018-04-09T08:26:09.138Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-04-09T08:26:09.138Z] > authorizing via signed-in user
-[debug] [2018-04-09T08:26:09.138Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2018-04-09T08:26:09.154Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+[debug] [2018-04-10T14:25:25.434Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-04-10T14:25:25.434Z] > authorizing via signed-in user
+[debug] [2018-04-10T14:25:25.434Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-04-10T14:25:25.434Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
  { refresh_token: '1/urxuriAov42d3LYOM7ygRqzIP0hdY7S7gveD7AsCMyI',
   client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
   client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
   grant_type: 'refresh_token',
   scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
- Mon Apr 09 2018 10:26:09 GMT+0200 (Paris, Madrid (heure d’été))
-[debug] [2018-04-09T08:26:09.435Z] <<< HTTP RESPONSE 200
-[debug] [2018-04-09T08:26:09.451Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/pixel-master  
+ Tue Apr 10 2018 16:25:25 GMT+0200 (Paris, Madrid (heure d’été))
+[debug] [2018-04-10T14:25:25.777Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-10T14:25:25.793Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/pixel-master  
   
- Mon Apr 09 2018 10:26:09 GMT+0200 (Paris, Madrid (heure d’été))
-[debug] [2018-04-09T08:26:10.294Z] <<< HTTP RESPONSE 200
-[debug] [2018-04-09T08:26:10.294Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/pixel-master/tokens  
+ Tue Apr 10 2018 16:25:25 GMT+0200 (Paris, Madrid (heure d’été))
+[debug] [2018-04-10T14:25:26.668Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-10T14:25:26.668Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/pixel-master/tokens  
   
- Mon Apr 09 2018 10:26:10 GMT+0200 (Paris, Madrid (heure d’été))
-[debug] [2018-04-09T08:26:10.951Z] <<< HTTP RESPONSE 200
-[debug] [2018-04-09T08:26:10.951Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/pixel-master  
+ Tue Apr 10 2018 16:25:26 GMT+0200 (Paris, Madrid (heure d’été))
+[debug] [2018-04-10T14:25:27.699Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-10T14:25:27.699Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/pixel-master  
   
- Mon Apr 09 2018 10:26:10 GMT+0200 (Paris, Madrid (heure d’été))
-[debug] [2018-04-09T08:26:11.826Z] <<< HTTP RESPONSE 200
+ Tue Apr 10 2018 16:25:27 GMT+0200 (Paris, Madrid (heure d’été))
+[debug] [2018-04-10T14:25:28.121Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from 'C:\Users\jerem\Documents\Ecole Sciences Co\Master\Semestre 2\Angular\Projet'...
 [info] 
-[debug] [2018-04-09T08:26:11.826Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/181134963224/clients/_:getWebAppConfig  
+[debug] [2018-04-10T14:25:28.137Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/181134963224/clients/_:getWebAppConfig  
   
- Mon Apr 09 2018 10:26:11 GMT+0200 (Paris, Madrid (heure d’été))
-[debug] [2018-04-09T08:26:12.388Z] <<< HTTP RESPONSE 200
+ Tue Apr 10 2018 16:25:28 GMT+0200 (Paris, Madrid (heure d’été))
+[debug] [2018-04-10T14:25:28.996Z] <<< HTTP RESPONSE 200
 [info] +  hosting: Local server: http://localhost:5000
 

@@ -224,15 +224,17 @@
     -o-transition: text-shadow 1s linear;
     transition: text-shadow 1s linear;
 }
-/*#found > #error {
-    font-family: "";
-}*/
+#found > #error {
+    position: relative;
+}
 #found > #error > span {
+    color: #fff;
     width: 20%;
     display: inline-block;
 }
 #found > #error > span.bold {
     font-weight: bold;
+    color: #ccc;
 }
 #found > #error > span:nth-child(2) {
     margin-left: 20%;
@@ -535,7 +537,7 @@ modal {
     padding: 2px;
     position: absolute;
     top: 30px;
-    left: 250px;
+    left: 220px;
     width: 400px;
     /*height: 200px;
     background: #000;*/
@@ -600,8 +602,8 @@ modal {
     margin: 0;
     padding: 2px;
     position: absolute;
-    top: 100px;
-    left: 230px;
+    top: 47px;
+    left: 320px;
     width: 400px;
     /*height: 200px;
     background: #000;*/
@@ -623,7 +625,7 @@ modal {
 }
 #tuto-score-neg .tuto .arrow img {
     width: 30px;
-    transform: rotate(270deg);
+    transform: rotate(180deg);
 }
 .tuto .tuto-inner {
     display: inline-block;
@@ -810,3 +812,27 @@ modal {
     border-top: 290px solid red;
     right: 425px;
 }
+
+#assassins_creed, #battlefield, #bioshock, #bloodborne, #call_of_duty, #dead_space, #devil_may_cry,
+#gta, #metro, #remember_me, #saints_row, #sim_city, #the_last_of_us, #tomb_raider {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    display: none;
+}
+
+#assassins_creed { background: url(../assets/images/photomontage-assassins-creed.png) 50% 0; background-size: cover; }
+#battlefield { background: url(../assets/images/photomontage-battlefield.png) 50% 0; background-size: cover; }
+#bioshock { background: url(../assets/images/photomontage-bioshock.png) 50% 0; background-size: cover; }
+#bloodborne { background: url(../assets/images/photomontage-bloodborne.png) 50% 0; background-size: cover; }
+#call_of_duty { background: url(../assets/images/photomontage-call-of-duty.png) 50% 0; background-size: cover; }
+#dead_space { background: url(../assets/images/photomontage-dead-space.png) 50% 0; background-size: cover; }
+#devil_may_cry { background: url(../assets/images/photomontage-devil-may-cry.png) 50% 0; background-size: cover; }
+#gta { background: url(../assets/images/photomontage-gta.png) 50% 0; background-size: cover; }
+#metro { background: url(../assets/images/photomontage-metro.png) 50% 0; background-size: cover; }
+#remember_me { background: url(../assets/images/photomontage-remember-me.png) 50% 0; background-size: cover; }
+#saints_row { background: url(../assets/images/photomontage-saints-row.png) 50% 0; background-size: cover; }
+#sim_city { background: url(../assets/images/photomontage-sim-city.png) 50% 0; background-size: cover; }
+#the_last_of_us { background: url(../assets/images/photomontage-the-last-of-us.png) 50% 0; background-size: cover; }
+#tomb_raider { background: url(../assets/images/photomontage-tomb-raider.png) 50% 0; background-size: cover; }

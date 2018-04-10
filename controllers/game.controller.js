@@ -115,10 +115,13 @@ function Controller(ModalService, AuthService, $scope, $firebaseArray/*, $fireba
          * Appelée lorsqu'un jeu est bien deviné
          */
         function success() {
-            findLinkedImage();
+            vm.gameNameImage = findLinkedImage(vm.gameName);
             console.log(vm.gameName + " fait bien parti de cette image.")
             vm.gamesFoundList.push(vm.gameName);
             console.log("Vous avez déjà trouvés : " + vm.gamesFoundList.toString());
+            //console.log('vm.gameName = ' + vm.gameName);
+            //document.getElementById(vm.gameName).style.display = "initial";/* A mettre dans une fonction et à appeler au chargement */
+            gamesFoundModalUpdate(vm.gameNameImage);
             //mise à jour du score et de nombre de jeu trouvé
             updateScore(20);
             vm.gamesFound++;
@@ -246,8 +249,20 @@ function Controller(ModalService, AuthService, $scope, $firebaseArray/*, $fireba
         /**
          * Associe le nom du jeu à une image (permet de retrouver l'image)
          */
-        function findLinkedImage() {
-            vm.gameNameImage = vm.gameName.toLowerCase().split(' ').join('_');
+        function findLinkedImage(gameName) {
+            var res = gameName.toLowerCase().split(' ').join('_');
+            res = res.split('\'').join('');
+            return res;
+        }
+
+
+        /**
+         * Ajoute le jeu à la liste des jeux trouvés (visulellement dans la fenêtre modale correspondante)
+         * @param {*} gameName le nom du jeu à afficher
+         */
+        function gamesFoundModalUpdate(gameName) {
+            console.log('Nom du jeu : ' + gameName);
+            document.getElementById(gameName).style.display = "initial";
         }
 
 
@@ -322,25 +337,32 @@ function Controller(ModalService, AuthService, $scope, $firebaseArray/*, $fireba
         function load() {
             $scope.connectedUser = AuthService.getUser();
 
-            var ref = firebase.database().ref().child('users');
-            $scope.users = $firebaseArray(ref);
+            if($scope.connectedUser != null) {
+                var ref = firebase.database().ref().child('users');
+                $scope.users = $firebaseArray(ref);
 
-            $scope.users.$ref().once('value', function(snap) {
-                angular.forEach(snap.val(), function(index) {
-                    if(index.email == $scope.connectedUser) {
-                        console.log('Bienvenue ' + index.email);
-                        console.log('Votre score est de ' + index.score);
-                        updateScore(index.score);
-                        vm.gamesFound = index.gamesFound;
-                        vm.gamesFoundDisplay = formatNumberLength(vm.gamesFound, 2);
-                        vm.gamesFoundList = index.gamesFoundList;
-                        console.log('Liste des jeux trouvés : ' + vm.gamesFoundList);
-                        vm.wrongAnswers = index.wrongAnswers;
-                        $("#error > span:nth-child(" + vm.wrongAnswers + ")").addClass('bold');
-                    }
+                $scope.users.$ref().once('value', function(snap) {
+                    angular.forEach(snap.val(), function(index) {
+                        if(index.email == $scope.connectedUser) {
+                            console.log('Bienvenue ' + index.email);
+                            console.log('Votre score est de ' + index.score);
+                            updateScore(index.score);
+                            vm.gamesFound = index.gamesFound;
+                            vm.gamesFoundDisplay = formatNumberLength(vm.gamesFound, 2);
+                            vm.gamesFoundList = index.gamesFoundList;
+                            console.log('Liste des jeux trouvés : ' + vm.gamesFoundList);
+                            vm.wrongAnswers = index.wrongAnswers;
+                            $("#error > span:nth-child(" + vm.wrongAnswers + ")").addClass('bold');
+                            //parcours de la liste des jeux trouvés pour les afficher visuellement dans le fenêtre jeux trouvés
+                            for(var i = 0; i < vm.gamesFoundList.length; i++) {
+                                //console.log('Jeu de la fonction LOAD : ' + vm.gamesFoundList[i]);
+                                gamesFoundModalUpdate(findLinkedImage(vm.gamesFoundList[i]));
+                            }
+                        }
 
+                    });
                 });
-            });
+            }
         }
 
 
