@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app', ['ui.router', 'firebase'])
+        .module('app', ['ui.router', 'firebase', 'angularSoundManager'])
         .config(config)
         .run(run);
 
@@ -44,6 +44,9 @@
             });
     }
 
-    function run() {
+    function run($rootScope) {
+        /*$rootScope.$on('$locationChangeStart', function(event, next, current) {
+            soundManager.mute();    
+        })*/
     }
 })();

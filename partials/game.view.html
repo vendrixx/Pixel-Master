@@ -33,10 +33,10 @@
     <div id="fullscreen">
         <img src="assets/images/fullscreen_transparent.png" alt="fullscreen" />
     </div>
-    <div id="music">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
+    <div ng-click="vm.toggleMusic()" id="music">
+        <div id="bar1" class="bar"></div>
+        <div id="bar2" class="bar"></div>
+        <div id="bar3" class="bar"></div>
     </div>
     <div id="credits" ng-click="vm.openModal('credits-modal')">Credits</div>
     <div id="legal" ng-click="vm.openModal('legal-modal')">Legal</div>

@@ -30,7 +30,7 @@
                     //des fois ça bug donc on le fait tout le temps pour être sur
                     document.getElementById("score").style.zIndex = "1";
                     document.getElementById("games-found").style.zIndex = "1";
-                    document.getElementById("score").style.zIndex = "1";
+                    document.getElementById("error").style.zIndex = "1";
                     if (!target.closest('.modal-body').length) {
                         scope.$evalAsync(Close);
 

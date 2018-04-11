@@ -281,6 +281,9 @@
     background: #fff;
     animation: equalizer 1s infinite; 
 }
+#tools #music .bar.pause {
+    animation-play-state: paused;
+}
 #tools #music .bar:nth-child(2) {
     animation-delay: 0.5s;
 }

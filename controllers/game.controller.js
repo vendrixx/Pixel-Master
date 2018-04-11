@@ -1,5 +1,3 @@
-/* Anciennement ModalController, c'est ici que la logique du jeu est implémentée. Ce controllers est relié à la page principale de l'appli */
-
 (function () {
     'use strict';
 
@@ -17,8 +15,12 @@
         .module('app')
         .controller('Controllers.GameController', Controller);
 
-function Controller(ModalService, AuthService, $scope, $firebaseArray/*, $firebaseSimpleLogin*/) {
+function Controller(ModalService, AuthService, $scope, $firebaseArray) {
         var vm = this;
+        var toggled = false;
+        var mySound = soundManager.createSound({
+            url: '../assets/musics/lhs_rld_22.mp4'
+        });
 
         vm.openModal = openModal;
         vm.closeModal = closeModal;
@@ -27,10 +29,10 @@ function Controller(ModalService, AuthService, $scope, $firebaseArray/*, $fireba
         vm.fail = fail;
         vm.alreadyFound = alreadyFound;
         vm.save = save;
+        vm.toggleMusic = toggleMusic;
 
 
         initController();
-        load();
 
 
         var ref = firebase.database().ref().child('games');
@@ -47,7 +49,6 @@ function Controller(ModalService, AuthService, $scope, $firebaseArray/*, $fireba
 
 
         function initController() {
-            vm.bodyText = 'This text can be sd,vl.....';
             vm.isInTheList = false;
             vm.gamesList = [];
             vm.gameName = '';
@@ -58,6 +59,8 @@ function Controller(ModalService, AuthService, $scope, $firebaseArray/*, $fireba
             vm.gamesFoundDisplay = '00';
             vm.gamesFoundList = [];
             vm.wrongAnswers = 0;
+            load();
+            loopSound(mySound);
         }
         
 
@@ -73,7 +76,9 @@ function Controller(ModalService, AuthService, $scope, $firebaseArray/*, $fireba
 
 
 
-        /***** Logique du jeu (récupération du nom du jeu entré, mise à jour du score, etc.) *****/
+
+
+        /***** LOGIQUE DU JEU (récupération du nom du jeu entré, mise à jour du score, etc.) *****/
 
         $('body').bind("keydown", function(event) { // lie les évenements keydown à une fonction
             var keyCode = event.which || event.keyCode;
@@ -87,6 +92,7 @@ function Controller(ModalService, AuthService, $scope, $firebaseArray/*, $fireba
                 angular.element('#game_name').focus();
             }
         });
+
 
         /**
          * Ce qu'il se passe lorsque le nom d'un jeu est proposé par le joueur
@@ -110,6 +116,7 @@ function Controller(ModalService, AuthService, $scope, $firebaseArray/*, $fireba
             }
             angular.element('#game_name').focus().blur();             
         }
+
 
         /**
          * Appelée lorsqu'un jeu est bien deviné
@@ -170,6 +177,7 @@ function Controller(ModalService, AuthService, $scope, $firebaseArray/*, $fireba
             vm.isInTheList = false;
         }
 
+
         /**
          * Appelée lorsqu'un jeu n'est pas bien deviné
          */
@@ -208,6 +216,7 @@ function Controller(ModalService, AuthService, $scope, $firebaseArray/*, $fireba
             }, 4400);
         }
 
+
         /**
          * Affiche un message lorsque le joueur tape le nom d'un jeu qu'il a déjà trouvé
          */
@@ -219,10 +228,11 @@ function Controller(ModalService, AuthService, $scope, $firebaseArray/*, $fireba
             document.getElementById("games-found").style.zIndex = "1000";
         }
 
+
         /**
          * Fait en sorte que le score s'affiche sur plusieurs chiffres (ex: avec 0 et 4 comme paramètres -> 0000 s'affiche)
-         * @param {*} num le nombre de base
-         * @param {*} length le nombre de chiffre que l'on veut
+         * @param {int} num le nombre de base
+         * @param {int} length le nombre de chiffre que l'on veut
          */
         function formatNumberLength(num, length) {
             var r = "" + num;
@@ -232,9 +242,10 @@ function Controller(ModalService, AuthService, $scope, $firebaseArray/*, $fireba
             return r;
         }
 
+
         /**
          * Mise à jour du score
-         * @param {*} score le nombre de points à ajouter
+         * @param {int} score le nombre de points à ajouter
          */
         function updateScore(score) {
             vm.score = vm.score + score;
@@ -243,7 +254,6 @@ function Controller(ModalService, AuthService, $scope, $firebaseArray/*, $fireba
             }
             vm.scoreDisplay = formatNumberLength(vm.score, 4);
         }
-
 
 
         /**
@@ -258,7 +268,7 @@ function Controller(ModalService, AuthService, $scope, $firebaseArray/*, $fireba
 
         /**
          * Ajoute le jeu à la liste des jeux trouvés (visulellement dans la fenêtre modale correspondante)
-         * @param {*} gameName le nom du jeu à afficher
+         * @param {String} gameName le nom du jeu à afficher
          */
         function gamesFoundModalUpdate(gameName) {
             console.log('Nom du jeu : ' + gameName);
@@ -268,8 +278,8 @@ function Controller(ModalService, AuthService, $scope, $firebaseArray/*, $fireba
 
         /**
          * Calcul de la distance de Levenshtein (la distance entre 2 chaînes de caractères)
-         * @param {*} a première chaîne
-         * @param {*} b deuxième chaîne
+         * @param {String} a première chaîne
+         * @param {String} b deuxième chaîne
          */
         function levenshtein_distance_a (a, b) {
             if(a.length == 0) return b.length; 
@@ -410,6 +420,48 @@ function Controller(ModalService, AuthService, $scope, $firebaseArray/*, $fireba
             });
 
         }
+
+
+
+
+        
+        /***** LECTURE DE MUSIQUE *****/        
+
+        /**
+         * Fait en sorte que la musique boucle
+         * @param {*} sound la musique que l'on veut jouer
+         */
+        function loopSound(sound) {
+            mySound.play({
+                onfinish : function() {
+                    loopSound(sound);
+                }
+            });
+        }
+        
+
+        /**
+         * Permet de mettre en pause la musique et de la reprendre (toggle button)
+         */
+        function toggleMusic() {
+            if(toggled) {
+                soundManager.unmute();
+                for(var i = 1; i < 4; i++) {
+                    $("#music > div:nth-child(" + i + ")").removeClass('pause');
+                }
+            } else {
+                soundManager.mute();
+                for(var i = 1; i < 4; i++) {
+                    $("#music > div:nth-child(" + i + ")").addClass('pause');
+                }
+            }
+            toggled = !toggled;
+        }
+
+        //Lorsque l'on quitte la page de jeu on arrête la musique sinon en faisant des aller-retours au menu plusieurs musiques se lancent...
+        $scope.$on('$stateChangeStart', function(event, toStart, toParams, fromState, FromParams) {
+            mySound.destruct();    
+        })
 
         
     }
