@@ -16,12 +16,12 @@ Ce qu'il reste à faire :
 - FAIT | Une page d'accueil avec "commencer la partie", "voir le classement" et "s'inscrire".
 - FAIT | Une animation lors des mauvaises réponses.
 - FAIT | Un game over + un end game.
-- La liste des jeux déjà trouvés.
+- FAIT | La liste des jeux déjà trouvés.
 - FAIT | Lier l'application à une bdd (firebase).
 - Le menu avec le logos des jeux.
 - FAIT | Une croix lorsque la modale peut être fermée au clique.
 - Ajouter 'Taper directement le nom sur votre clavier" lors de la saisie.
-- Ajouter la fonction fullscreen.
+- FAIT | Ajouter la fonction fullscreen.
 - FAIT | Ajouter un tuto mauvaise réponses donc score -50.
 
 
@@ -29,7 +29,7 @@ Ce qu'il reste à faire :
 
 Eventuellement :
 - Des animations pour les transitions/apparition de modales.
-- De la musique.
+- FAIT | De la musique.
 - FAIT | Une recherche moins stricte.
 - Une fonction j'aime/j'aime pas.
 - Ameliorer l'animation de succes.

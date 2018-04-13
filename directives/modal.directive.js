@@ -24,30 +24,32 @@
                     var target = $(e.target);
                     //fermeture au moindre clique sur la modale credits, legal ou glitch
                     var modalToCloseOnClick = ["credits-modal", "legal-modal", "glitch-modal", "tuto-score", "tuto-score-neg", "tuto-found", "games-found-modal"]
+                    var modalToNeverClose = ["end-game", "game-over"]
                     if(modalToCloseOnClick.includes(attrs.id)) {
                         ModalService.Close(attrs.id);
+                    } else if(!modalToNeverClose.includes(attrs.id)) {
+                        if (!target.closest('.modal-body').length) {
+                            scope.$evalAsync(Close);
+
+                            ModalService.Close(attrs.id); // fermeture réelle de la modale (pas comme dans le code de base...)
+                            if(attrs.id == "custom-modal-2") {
+                                angular.element('#game_name').val(""); //supprime la valeur du champ texte lorsque la fenêtre de saisie est fermée
+                            }    
+                            if(attrs.id == "tuto-score") {
+                                document.getElementById("score").style.zIndex = "1"; //on repasse le z-index à 1 après la fermeture du tuto
+                            }
+                            if(attrs.id == "tuto-score-neg") {
+                                document.getElementById("error").style.zIndex = "1"; //on repasse le z-index à 1 après la fermeture du tuto
+                            }
+                            if(attrs.id == "tuto-found") {
+                                document.getElementById("games-found").style.zIndex = "1"; //on repasse le z-index à 1 après la fermeture du tuto
+                            }
+                        }
                     }
                     //des fois ça bug donc on le fait tout le temps pour être sur
                     document.getElementById("score").style.zIndex = "1";
                     document.getElementById("games-found").style.zIndex = "1";
-                    document.getElementById("error").style.zIndex = "1";
-                    if (!target.closest('.modal-body').length) {
-                        scope.$evalAsync(Close);
-
-                        ModalService.Close(attrs.id); // fermeture réelle de la modale (pas comme dans le code de base...)
-                        if(attrs.id == "custom-modal-2") {
-                            angular.element('#game_name').val(""); //supprime la valeur du champ texte lorsque la fenêtre de saisie est fermée
-                        }    
-                        if(attrs.id == "tuto-score") {
-                            document.getElementById("score").style.zIndex = "1"; //on repasse le z-index à 1 après la fermeture du tuto
-                        }
-                        if(attrs.id == "tuto-score-neg") {
-                            document.getElementById("error").style.zIndex = "1"; //on repasse le z-index à 1 après la fermeture du tuto
-                        }
-                        if(attrs.id == "tuto-found") {
-                            document.getElementById("games-found").style.zIndex = "1"; //on repasse le z-index à 1 après la fermeture du tuto
-                        }
-                    }
+                    document.getElementById("error").style.zIndex = "1";   
                 });
  
                 // add self (this modal instance) to the modal service so it's accessible from controllers
