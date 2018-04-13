@@ -15,11 +15,11 @@
         .module('app')
         .controller('Controllers.GameController', Controller);
 
-function Controller(ModalService, AuthService, $scope, $firebaseArray) {
+function Controller(ModalService, AuthService, Fullscreen, $scope, $firebaseArray) {
         var vm = this;
         var toggled = false;
         var mySound = soundManager.createSound({
-            url: '../assets/musics/lhs_rld_22.mp4'
+            url: '../assets/musics/lhs_rld_22.mp4' /* Attention il peut y avoir des erreurs avec les chemins relatifs */
         });
 
         vm.openModal = openModal;
@@ -30,6 +30,7 @@ function Controller(ModalService, AuthService, $scope, $firebaseArray) {
         vm.alreadyFound = alreadyFound;
         vm.save = save;
         vm.toggleMusic = toggleMusic;
+        vm.fullscreen = fullscreen;
 
 
         initController();
@@ -462,6 +463,22 @@ function Controller(ModalService, AuthService, $scope, $firebaseArray) {
         $scope.$on('$stateChangeStart', function(event, toStart, toParams, fromState, FromParams) {
             mySound.destruct();    
         })
+
+        /**
+         * Permet de mettre le jeu en plein écran
+         */
+        function fullscreen() {
+            if(Fullscreen.isEnabled())
+                Fullscreen.cancel();
+            else
+                Fullscreen.all();
+        }
+
+        $scope.isFullScreen = false;
+
+        /*$scope.goFullScreenViaWatcher = function() {
+            $scope.isFullScreen = !$scope.isFullScreen;
+        }*/
 
         
     }

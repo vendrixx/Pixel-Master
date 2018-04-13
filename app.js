@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app', ['ui.router', 'firebase', 'angularSoundManager'])
+        .module('app', ['ui.router', 'firebase', 'angularSoundManager', 'FBAngular'])
         .config(config)
         .run(run);
 
