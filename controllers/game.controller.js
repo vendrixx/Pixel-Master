@@ -19,7 +19,7 @@ function Controller(ModalService, AuthService, Fullscreen, $scope, $firebaseArra
         var vm = this;
         var toggled = false;
         var mySound = soundManager.createSound({
-            url: '../assets/musics/lhs_rld_22.mp4' /* Attention il peut y avoir des erreurs avec les chemins relatifs */
+            url: '../assets/musics/lhs_rld_22.mp3' /* Attention il peut y avoir des erreurs avec les chemins relatifs */
         });
 
         vm.openModal = openModal;
@@ -31,9 +31,17 @@ function Controller(ModalService, AuthService, Fullscreen, $scope, $firebaseArra
         vm.save = save;
         vm.toggleMusic = toggleMusic;
         vm.fullscreen = fullscreen;
+        vm.displayHUD = displayHUD;
+        vm.hideHUD = hideHUD;
 
 
         initController();
+        if(!vm.animationRunning) {
+            type();
+            console.log('JE TYPE');
+        } else {
+            console.log('IMPOSSIBLE DE TAPER PENDANT UNE ANIMATION');
+        }
 
 
         var ref = firebase.database().ref().child('games');
@@ -50,6 +58,7 @@ function Controller(ModalService, AuthService, Fullscreen, $scope, $firebaseArra
 
 
         function initController() {
+            vm.animationRunning = false;
             vm.isInTheList = false;
             vm.gamesList = [];
             vm.gameName = '';
@@ -81,7 +90,7 @@ function Controller(ModalService, AuthService, Fullscreen, $scope, $firebaseArra
 
         /***** LOGIQUE DU JEU (récupération du nom du jeu entré, mise à jour du score, etc.) *****/
 
-        $('body').bind("keydown", function(event) { // lie les évenements keydown à une fonction
+        /*$('body').bind("keydown", function(event) { // lie les évenements keydown à une fonction
             var keyCode = event.which || event.keyCode;
             
             var inp = String.fromCharCode(keyCode); // transformation du code clavier (int) en string
@@ -92,7 +101,26 @@ function Controller(ModalService, AuthService, Fullscreen, $scope, $firebaseArra
                 // focus sur la zone de saisie de texte
                 angular.element('#game_name').focus();
             }
-        });
+        });*/
+
+        function type() {
+            $('body').bind("keydown", function(event) { // lie les évenements keydown à une fonction
+                console.log("BORDERL Type est appelée");
+                console.log("NomBRE de Fenetre OUVertES = " + ModalService.NbOfOpened());
+                console.log(vm.animationRunning);
+                var keyCode = event.which || event.keyCode;
+                
+                var keyCodes = [112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123];
+                var inp = String.fromCharCode(keyCode); // transformation du code clavier (int) en string
+                // si la touche appuyée est une lettre, un chiffre, un tiret, un underscore ou un espace ET qu'il n'y a pas d'autre modale ouverte
+                if (/[a-zA-Z0-9-_ ]/.test(inp) && ModalService.NbOfOpened() < 1 && !vm.animationRunning && !keyCodes.includes(keyCode)) {
+                    // si la modal de saisie de texte n'est pas encore ouverte
+                    ModalService.Open('custom-modal-2'); // on l'ouvre    
+                    // focus sur la zone de saisie de texte
+                    angular.element('#game_name').focus();
+                }
+            });
+        }
 
 
         /**
@@ -102,6 +130,8 @@ function Controller(ModalService, AuthService, Fullscreen, $scope, $firebaseArra
             //var gamesList = ["dead space", "gta", "battlefield", "remember me", "tomb raider", "bioshock", "assassin's creed",
             //                "devil may cry", "the last of us", "call of duty", "saints row", "sim city", "metro", "bloodborne"];
             // si le jeu à déjà été touvé
+            vm.animationRunning = true;
+            console.log(vm.animationRunning);
 
             mostSimilarGame();
 
@@ -157,6 +187,9 @@ function Controller(ModalService, AuthService, Fullscreen, $scope, $firebaseArra
                 $scope.$apply(function() {
                     $('#nb_found').removeClass('glow');
                     $('#score_number > span').removeClass('glow');
+                    if(vm.gamesFound != 1 && vm.gamesFound != 2) {
+                        vm.animationRunning = false;
+                    }
                 });
             }, 3500);
 
@@ -167,9 +200,13 @@ function Controller(ModalService, AuthService, Fullscreen, $scope, $firebaseArra
                 if(vm.gamesFound == 1) {
                     ModalService.Open('tuto-score');
                     document.getElementById("score").style.zIndex = "1000";
+                    vm.animationRunning = false;
+                    console.log('Animation Running repasse à false');
                 } else if(vm.gamesFound == 2) {
                     ModalService.Open('tuto-found');
                     document.getElementById("games-found").style.zIndex = "1000";
+                    vm.animationRunning = false;
+                    console.log('Animation Running repasse à false');
                 } else if(vm.gamesFound == 14) {
                     ModalService.Open('end-game');
                 }
@@ -193,6 +230,9 @@ function Controller(ModalService, AuthService, Fullscreen, $scope, $firebaseArra
                 $scope.$apply(function() {
                     ModalService.Close('glitch-modal');
                     vm.gameName = "";
+                    if(vm.wrongAnswers != 1) {
+                        vm.animationRunning = false;
+                    }
                 });
             }, 2700);
             //les croix qui indiquent le nombre d'erreur sont mise en gras au fur et à mesure
@@ -212,6 +252,7 @@ function Controller(ModalService, AuthService, Fullscreen, $scope, $firebaseArra
                     if(vm.wrongAnswers == 1) {
                         ModalService.Open('tuto-score-neg');
                         document.getElementById("error").style.zIndex = "1000";
+                        vm.animationRunning = false;
                     }
                 });
             }, 4400);
@@ -227,6 +268,7 @@ function Controller(ModalService, AuthService, Fullscreen, $scope, $firebaseArra
             vm.gameName = "";
             ModalService.Open('games-already-found');
             document.getElementById("games-found").style.zIndex = "1000";
+            vm.animationRunning = false;
         }
 
 
@@ -479,6 +521,21 @@ function Controller(ModalService, AuthService, Fullscreen, $scope, $firebaseArra
         /*$scope.goFullScreenViaWatcher = function() {
             $scope.isFullScreen = !$scope.isFullScreen;
         }*/
+
+        /**
+         * Change le z-index du HUD pour qu'il apparaisse avec le menu
+         */
+        function displayHUD() {
+            document.getElementById("user").style.zIndex = 1001;
+            document.getElementById("fullscreen").style.zIndex = 1001;
+            document.getElementById("music").style.zIndex = 1001;
+        }
+
+        function hideHUD() {
+            document.getElementById("user").style.zIndex = 1;
+            document.getElementById("fullscreen").style.zIndex = 1;
+            document.getElementById("music").style.zIndex = 1;
+        }
 
         
     }

@@ -35,7 +35,7 @@
 .principal {
     font-family: 'Geomanist';
     /*background: url('../assets/images/photomontage.jpg');*/
-    background: url(../assets/images/photomontage-test-modif.jpg) no-repeat 50% 0;
+    background: url(../assets/images/photomontage-modif.png) no-repeat 50% 0;
     background-size: cover;
     background-color: #242424;
     color: #fff;
@@ -151,7 +151,7 @@
     /*background: lightgray;*/
     position: absolute;
     top: 30px;
-    left: 30px;
+    left: 50px;
 }
 #profil, #score, #found {
     display: inline-block;
@@ -249,7 +249,7 @@
 #logo_part1 {
     position: absolute;
     top: 20px;
-    right: 40px;
+    right: 50px;
     font-size: 100px;
 }
 #logo_part2 {
@@ -264,7 +264,7 @@
 #tools {
     position: absolute;
     bottom: 30px;
-    left: 30px;
+    left: 50px;
     display: inline-flex;
     font-size: 13px;
 }
@@ -314,7 +314,7 @@
 #tools2 {
     position: absolute;
     bottom: 30px;
-    right: 30px;
+    right: 50px;
     display: inline-flex;
     font-size: 13px;
 }
@@ -341,6 +341,9 @@
 /* General */
 modal {
     display: none;
+}
+modal * {
+    animation: opacity-modal .2s;
 }
 
 .modal {
@@ -380,9 +383,50 @@ modal {
     bottom: 0;
     left: 0;
     background-color: #000;
-    opacity: 0.75;
+    opacity: 0.80;
     z-index: 900;
+    animation: opacity-modal-background .2s;
 }
+/* Animation test */
+#good-answer .modal-background {
+    margin: auto;
+    width: 100%;
+    height: 100vh;
+    /*border-radius: 0;*/
+    animation: opacity-modal-background .2s, appear .7s;
+}
+@keyframes appear {
+    0% {
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+    }
+    30% {
+        border-radius: 50%;
+    }
+    100% {
+        width: 2000px;
+        height: 2000px;
+    }
+}
+
+@keyframes opacity-modal-background {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.80;
+    }
+}
+@keyframes opacity-modal {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .modal {
     cursor: url(../assets/images/cross-transparent-small.png), auto!important;
 }
@@ -403,6 +447,42 @@ modal {
     word-spacing: 10px;
     border: none;
     background: transparent;
+}
+
+
+
+/* Menu */
+#menu .modal-body {
+    margin-top: 150px;
+    margin-left: 50px;
+    padding: 0;
+}
+#menu .modal-body h3 {
+    margin-bottom: 50px;
+}
+#menu-connected div,
+#menu-not-connected div {
+    width: 230px;
+    padding: 10px 20px;
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    font-size: 13px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+#menu-connected div:hover,
+#menu-not-connected div:hover {
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #000;
+}
+#menu a {
+    color: #fff;
+}
+#menu-connected div:hover a,
+#menu-not-connected div:hover a {
+    color: #000;
 }
 
 
@@ -540,7 +620,7 @@ modal {
     padding: 2px;
     position: absolute;
     top: 30px;
-    left: 220px;
+    left: 240px;
     width: 400px;
     /*height: 200px;
     background: #000;*/
@@ -606,7 +686,7 @@ modal {
     padding: 2px;
     position: absolute;
     top: 47px;
-    left: 320px;
+    left: 340px;
     width: 400px;
     /*height: 200px;
     background: #000;*/
@@ -675,7 +755,7 @@ modal {
     top: initial;
     left: initial;
     bottom: 70px;
-    right: 30px;
+    right: 50px;
     width: 300px;
     /*height: 140px;*/
     background: #000;

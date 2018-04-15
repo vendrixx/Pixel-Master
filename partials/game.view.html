@@ -4,7 +4,7 @@
 
 <!-- Top left (user section) -->
 <div id="user">
-    <div id="profil" ng-click="vm.openModal('end-game')">
+    <div id="profil" ng-click="vm.openModal('menu'); vm.displayHUD()">
         <img src="assets/images/mario-profil-icone-gris.png" alt="profil icon"/>
     </div>
     <div id="score">
@@ -38,15 +38,15 @@
         <div id="bar2" class="bar"></div>
         <div id="bar3" class="bar"></div>
     </div>
-    <div id="credits" ng-click="vm.openModal('credits-modal')">Credits</div>
-    <div id="legal" ng-click="vm.openModal('legal-modal')">Legal</div>
+    <div id="credits" ng-click="vm.openModal('credits-modal'); vm.hideHUD()">Credits</div>
+    <div id="legal" ng-click="vm.openModal('legal-modal'); vm.hideHUD()">Legal</div>
 </div>
 
 <!-- Bottom right (socials and save) -->
 <div id="tools2">
     <div id="games-found" ng-click="vm.openModal('games-found-modal')">Jeux trouvés</div>
     <div id="save" ng-click="vm.save()">Sauvegarder</div>
-    <div id="logout" ng-click="logout()"><a href="#/menu">Menu</a></div>
+    <!--<div id="logout" ng-click="logout()"><a href="#/menu">Menu</a></div>-->
 </div>
 
 
@@ -88,6 +88,9 @@
                 -->
                 
                 <p>{{vm.gameName}}</p>
+
+                <!-- Test animation ++
+                <p>+ 20 points</p>-->
             </div>
         </div>
     </div>
@@ -314,17 +317,6 @@
 </modal>
 
 
-<!-- TEST de formes css -->
-<modal id="games-found-moda">
-    <div class="modal">
-        <div class="modal-body">
-            <div class="gta-sup"></div>
-            <div class="dead-space"></div>
-        </div>
-    </div>
-    <div class="modal-background"></div>
-</modal>
-
 <!-- GAMES FOUND -->
 <modal id="games-found-modal">
     <div class="modal">
@@ -343,6 +335,27 @@
             <div id="sim_city"></div>
             <div id="the_last_of_us"></div>
             <div id="tomb_raider"></div>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>
+
+
+<!-- MENU -->
+<modal id="menu" ng-controller="WelcomeCtrl">
+    <div class="modal">
+        <div class="modal-body">
+            <h3>Connecté en tant que {{username}} !</h3>
+            <div id="menu-connected">
+                <div ng-click="vm.save(); vm.closeModal('menu'); vm.hideHUD()">Sauvegarder</div>
+                <div ng-click="vm.closeModal('menu'); logout(); vm.hideHUD()"><a href="/">Quitter la partie</a></div>
+                <div ng-click="vm.closeModal('menu'); vm.hideHUD()">Retour au jeu</div>
+            </div>
+            <div id="menu-not-connected">
+                    <div ng-click="vm.closeModal('menu'); vm.hideHUD()"><a href="#/log">Connexion</a></div>
+                    <div ng-click="vm.closeModal('menu'); vm.hideHUD()"><a href="/">Quitter la partie</a></div>
+                    <div ng-click="vm.closeModal('menu'); vm.hideHUD()">Retour au jeu</div>
+                </div>
         </div>
     </div>
     <div class="modal-background"></div>
